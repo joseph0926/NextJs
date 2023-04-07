@@ -2,6 +2,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 import { Box, List, ListItem, ListIcon, Divider, Center, LinkBox, LinkOverlay } from "@chakra-ui/layout";
 import { MdHome, MdSearch, MdLibraryMusic, MdPlaylistAdd, MdFavorite } from "react-icons/md";
+import { usePlaylist } from "../lib/hooks";
 
 const navMenu = [
   {
@@ -34,11 +35,13 @@ const musicMenu = [
   },
 ];
 
-const playList = new Array(30).fill(1).map((_, idx) => {
-  return `PlayList ${idx + 1}`;
-});
+// const playList = new Array(30).fill(1).map((_, idx) => {
+//   return `PlayList ${idx + 1}`;
+// });
 
 const Sidebar = () => {
+  const { playlists, isLoading } = usePlaylist();
+
   return (
     <Box width="100%" height="calc(100vh - 100px)" bg="black" paddingX="5px" color="gray">
       <Box paddingY="20px" height="100%">
@@ -84,19 +87,21 @@ const Sidebar = () => {
         <Divider color="gray.800" />
         <Box height="66%" overflowY="auto" paddingY="20px">
           <List spacing={2}>
-            {playList.map((list) => {
-              return (
-                <ListItem paddingX="20px" key={list}>
-                  <LinkBox>
-                    <Link href="/" passHref>
-                      {/* <LinkOverlay> */}
-                      {list}
-                      {/* </LinkOverlay> */}
-                    </Link>
-                  </LinkBox>
-                </ListItem>
-              );
-            })}
+            {isLoading && <p>Loading,,</p>}
+            {!isLoading &&
+              playlists.map((list) => {
+                return (
+                  <ListItem paddingX="20px" key={list.id}>
+                    <LinkBox>
+                      <Link href="/" passHref>
+                        {/* <LinkOverlay> */}
+                        {list.name}
+                        {/* </LinkOverlay> */}
+                      </Link>
+                    </LinkBox>
+                  </ListItem>
+                );
+              })}
           </List>
         </Box>
       </Box>

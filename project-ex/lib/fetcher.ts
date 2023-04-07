@@ -6,5 +6,10 @@ export default async function (url: string, data = undefined) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  }).then((response) => {
+    if (response.status > 399 || response.status < 200) {
+      throw new Error();
+    }
+    return response.json();
   });
 }
