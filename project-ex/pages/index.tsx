@@ -2,16 +2,19 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import MainLayout from "../components/MainLayout";
 import prisma from "../lib/prisma";
 import { Image } from "@chakra-ui/react";
+import { useUser } from "../lib/hooks";
 
 const Home = ({ artists }) => {
+  const { user, isLoading } = useUser();
+
   return (
     <MainLayout
-      color="red"
+      color="gray"
       subtitle="asdfqwer"
-      title="dummy"
-      description="asdfasdfqwer"
+      title={`${user?.firstName} ${user?.lastName}`}
+      description={`${user?.playlistsCount} public PlayLists`}
       image="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/330px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
-      roundImage={null}
+      roundImage={false}
     >
       <Box color="white" paddingX="40px">
         <Box marginBottom="40px">

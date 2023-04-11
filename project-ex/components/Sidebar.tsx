@@ -93,10 +93,14 @@ const Sidebar = () => {
                 return (
                   <ListItem paddingX="20px" key={list.id}>
                     <LinkBox>
-                      <Link href="/" passHref>
-                        {/* <LinkOverlay> */}
+                      <Link
+                        href={{
+                          pathname: "/playlist/[id]",
+                          query: { id: list.id },
+                        }}
+                        passHref
+                      >
                         {list.name}
-                        {/* </LinkOverlay> */}
                       </Link>
                     </LinkBox>
                   </ListItem>

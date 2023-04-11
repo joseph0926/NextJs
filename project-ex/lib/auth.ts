@@ -27,3 +27,8 @@ export const validateRoute = (handler) => {
     res.status(401).json({ error: "유효하지 않은 인증입니다." });
   };
 };
+
+export const validateToken = (token) => {
+  const user = jwt.verify(token, "secretjwt");
+  return user;
+};
