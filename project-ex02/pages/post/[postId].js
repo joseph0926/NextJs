@@ -4,10 +4,10 @@ const Post = () => {
   return <div>Post</div>;
 };
 
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-    props: {},
-  };
-});
+// export const getServerSideProps = withPageAuthRequired(() => {
+//   return {
+//     props: {},
+//   };
+// });
 
 export default Post;

@@ -9,10 +9,10 @@ NewPost.getLayout = function getLayout(page, pageProps) {
   return <AppLayout {...pageProps}>{page}</AppLayout>;
 };
 
-export const getServerSideProps = withPageAuthRequired(() => {
-  return {
-    props: {},
-  };
-});
+// export const getServerSideProps = withPageAuthRequired(() => {
+//   return {
+//     props: {},
+//   };
+// });
 
 export default NewPost;
